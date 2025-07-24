@@ -1,0 +1,76 @@
+---
+import { Image } from "@heroui/react";
+import Header from "./header.astro";
+import { motion } from "framer-motion";
+import { Carrousel } from "./carrusel";
+import { FormComponent } from "./form_component";
+---
+
+  <main class="flex flex-col gap-4 sm:w-[100%] md:w-[100%] lg:w-[100%] xl:w-[100%] 2xl:w-[100%] 3xl:w-[100%]">
+    <div class="flex flex-row justify-center items-center">
+      <Header />
+    </div>
+    {/* About */}
+    <div class="flex flex-col justify-center items-center m-5">
+      <motion.div
+        className="flex flex-row justify-center items-center gap-3"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        client:visible
+      >
+        <div
+          class="w-full h-full flex-col justify-center items-center hidden sm:hidden md:flex lg:flex xl:flex 2xl:flex 3xl:flex"
+        >
+          <Image
+            src="/images/monitoreo_imagen.png"
+            alt="Equipo trabajando"
+            width={800}
+            height={500}
+            className="shadow rounded-lg"
+            client:visible
+          />
+        </div>
+        <div class="w-full h-full flex flex-col p-16">
+          <h1 class="text-5xl font-extrabold text-blue-900 mb-4">
+            Soluciones personalizadas para cada sector
+          </h1>
+          <p class="mb-4 text-gray-700 text-lg">
+            Nos especializamos en transformar grandes volúmenes de datos en
+            inteligencia accionable, facilitando decisiones estratégicas en
+            áreas de comunicación, mercado, reputación y más.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg font-bold">
+            <li>Más de 6,500 entregables anuales.</li>
+            <li>Presencia en más de 100 ciudades.</li>
+            <li>Confianza de clientes públicos y privados.</li>
+          </ul>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Confianza/logos*/}
+    <motion.div
+      className="w-full h-full flex flex-col justify-center items-center"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      client:visible
+    >
+      <Carrousel client:visible />
+    </motion.div>
+
+	{/* Formulario*/}
+    <motion.div
+      className="w-full h-full flex flex-col justify-center items-center"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      client:visible
+    >
+      <FormComponent client:visible />
+    </motion.div>
+  </main>

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+/* Scroll suave global */
+html {
+    scroll-behavior: smooth;
+  }

@@ -1,0 +1,66 @@
+---
+import { Button, Image, Link } from "@heroui/react";
+import { motion } from "framer-motion";
+---
+
+<div class="flex flex-col justify-center w-full h-full">
+  <motion.div
+    className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 px-6 text-center md:text-left md:flex md:items-center md:justify-between"
+    initial={{ opacity: 0, y: -50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    client:visible
+  >
+    <div class="max-w-xl">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        Inteligencia de medios <span class="text-orange-400"
+          >en tiempo real</span
+        >
+      </h1>
+      <p class="text-lg mb-6 font-thin">
+        Estrategias basadas en datos para decisiones más inteligentes en
+        sectores públicos y privados.
+      </p>
+      <div class="flex flex-row justify-start items-center gap-4 mt-2">
+        <a href="#contact">
+          <Button
+            radius="md"
+            size="lg"
+            className=" text-white py-3 px-6 font-bold text-lg"
+            color="secondary"
+            variant="solid"
+            client:visible
+          >
+            Solicita tú informe gratuito
+          </Button>
+        </a>
+        <Button
+          radius="md"
+          size="lg"
+          color="default"
+          variant="bordered"
+          className="text-white mb-1 font-bold"
+          client:visible
+        >
+          Contáctanos
+        </Button>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-row justify-end items-end w-full h-full">
+      <Link client:visible href="/">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          client:visible
+        >
+          <Image
+            src="/images/logo.svg"
+            alt="Ilustración de monitoreo de medios"
+            className="rounded-lg hidden sm:hidden sm:h-auto md:flex md:w-[400px] md:h-auto lg:w-[600px] lg:h-auto xl:w-[800px] xl:h-auto 2xl:w-[900px] 2xl:h-auto 3xl:w-[1000px] 3xl:h-auto"
+            client:visible
+          />
+        </motion.div>
+      </Link>
+    </div>
+  </motion.div>
+</div>
