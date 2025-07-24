@@ -3,6 +3,7 @@ import Header from "./header.astro";
 import { motion } from "framer-motion";
 import { Carrousel } from "./carrusel";
 import { FormComponent } from "./form_component";
+import { Image } from 'astro:assets';
 ---
 
   <main class="flex flex-col gap-4 sm:w-[100%] md:w-[100%] lg:w-[100%] xl:w-[100%] 2xl:w-[100%] 3xl:w-[100%]">
@@ -22,12 +23,13 @@ import { FormComponent } from "./form_component";
         <div
           class="w-full h-full flex-col justify-center items-center hidden sm:hidden md:flex lg:flex xl:flex 2xl:flex 3xl:flex"
         >
-          <img
+          <Image
             src="/images/monitoreo_imagen.png"
             alt="Equipo trabajando"
             width={800}
             height={500}
             class="shadow rounded-lg"
+            loading="eager"
           />
         </div>
         <div class="w-full h-full flex flex-col p-16">

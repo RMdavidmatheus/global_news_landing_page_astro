@@ -14,10 +14,13 @@ import axios from "axios";
 import type { FormWebModel } from "../models/formModel";
 
 export function FormComponent() {
+  const [name, setName] = useState("");
+  const [nameCompany, setNameCompany] = useState("");
+  const [email, setEmail] = useState("");
   const [sectorValue, setSectorValue] = useState<Set<Key>>(new Set([]));
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   //* Log the error
   useEffect(() => {
     if (error) console.log(error);
@@ -31,6 +34,7 @@ export function FormComponent() {
     { key: "tecnologia", label: "Tecnologia" },
     { key: "otros", label: "Otros" },
   ];
+
 
   const secretUrl = import.meta.env.PUBLIC_API_URL_LOCAL;
 
@@ -68,7 +72,7 @@ export function FormComponent() {
       setIsLoading(true);
       try {
         const objectData = Object.fromEntries(new FormData(e.currentTarget));
-        const bodyFetch: FormWebModel = {
+        const bodyFetch: BodyFetch = {
           name_client: objectData.name as string,
           name_company: objectData.nameCompany as string,
           email_client: objectData.email as string,
@@ -92,6 +96,10 @@ export function FormComponent() {
           });
         }
         form.reset();
+        setName("");
+        setNameCompany("");
+        setEmail("");
+        setSectorValue(new Set([]));
       } catch (error) {
         console.error("Error fetching data: ", error);
         addToast({
@@ -110,89 +118,95 @@ export function FormComponent() {
 
   return (
     <div className="flex flex-col gap-3 p-6 max-w-4xl mx-auto" id="contact">
-        <h1 className="text-blue-900 font-bold text-3xl text-center">
-          Solicita tu informe gratuito
-        </h1>
-        <p>
-          Te enviaremos un reporte de ejemplo con tendencias específicas de tu
-          sector.
-        </p>
-        <div className="flex flex-col pt-5">
-          <Form
-            className="w-full max-w-xs gap-3"
-            onSubmit={handleSubmit}
-            validationBehavior="native"
+      <h1 className="text-blue-900 font-bold text-3xl text-center">
+        Solicita tu informe gratuito
+      </h1>
+      <p>
+        Te enviaremos un reporte de ejemplo con tendencias específicas de tu
+        sector.
+      </p>
+      <div className="flex flex-col pt-5">
+        <Form
+          className="w-full max-w-xs gap-3"
+          onSubmit={handleSubmit}
+          validationBehavior="native"
+        >
+          <Input
+            aria-label="Ingresa tu nombre"
+            isClearable
+            isRequired
+            errorMessage="Por favor, ingresa un nombre"
+            name="name"
+            variant="bordered"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            color="primary"
+            className="w-[550px]"
+            placeholder="Ingresa tu nombre"
+            type="text"
+          />
+          <Input
+            aria-label="Ingresa el nombre de tu empresa"
+            isClearable
+            isRequired
+            errorMessage="Por favor, ingresa un nombre de empresa"
+            name="nameCompany"
+            variant="bordered"
+            value={nameCompany}
+            onChange={(e) => setNameCompany(e.target.value)}
+            color="primary"
+            className="w-[550px]"
+            placeholder="Ingresa el nombre de tu empresa"
+            type="text"
+          />
+          <Input
+            aria-label="Ingresa tu correo electrónico"
+            isClearable
+            isRequired
+            errorMessage="Por favor, ingresa un correo electrónico"
+            name="email"
+            variant="bordered"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            color="primary"
+            className="w-[550px]"
+            placeholder="Ingresa tu correo electrónico"
+            type="email"
+          />
+
+          <Select
+            aria-label="Selecciona tu sector"
+            isRequired
+            errorMessage="Por favor, selecciona un sector"
+            className="w-[550px]"
+            selectedKeys={sectorValue}
+            name="sector"
+            variant="bordered"
+            color="primary"
+            placeholder="Selecciona tu sector"
+            disallowEmptySelection
+            selectionMode="single"
+            onSelectionChange={(keys) =>
+              setSectorValue(new Set(keys as Iterable<Key>))
+            }
           >
-            <Input
-              aria-label="Ingresa tu nombre"
-              isClearable
-              isRequired
-              errorMessage="Por favor, ingresa un nombre"
-              name="name"
-              variant="bordered"
-              color="primary"
-              className="w-[550px]"
-              placeholder="Ingresa tu nombre"
-              type="text"
-            />
-            <Input
-              aria-label="Ingresa el nombre de tu empresa"
-              isClearable
-              isRequired
-              errorMessage="Por favor, ingresa un nombre de empresa"
-              name="nameCompany"
-              variant="bordered"
-              color="primary"
-              className="w-[550px]"
-              placeholder="Ingresa el nombre de tu empresa"
-              type="text"
-            />
-            <Input
-              aria-label="Ingresa tu correo electrónico"
-              isClearable
-              isRequired
-              errorMessage="Por favor, ingresa un correo electrónico"
-              name="email"
-              variant="bordered"
-              color="primary"
-              className="w-[550px]"
-              placeholder="Ingresa tu correo electrónico"
-              type="email"
-            />
+            {sectorTypes.map((sector) => (
+              <SelectItem key={sector.key}>{sector.label}</SelectItem>
+            ))}
+          </Select>
 
-            <Select
-              aria-label="Selecciona tu sector"
-              isRequired
-              errorMessage="Por favor, selecciona un sector"
-              className="w-[550px]"
-              selectedKeys={sectorValue}
-              name="sector"
-              variant="bordered"
-              color="primary"
-              placeholder="Selecciona tu sector"
-              disallowEmptySelection
-              selectionMode="single"
-              onSelectionChange={(keys) =>
-                setSectorValue(new Set(keys as Iterable<Key>))
-              }
-            >
-              {sectorTypes.map((sector) => (
-                <SelectItem key={sector.key}>{sector.label}</SelectItem>
-              ))}
-            </Select>
-
-            <Button
-              type="submit"
-              variant="flat"
-              color="primary"
-              className="w-[550px]"
-              isLoading={isLoading}
-            >
-              Enviar
-            </Button>
-          </Form>
-        </div>
-        <ToastProvider placement="top-right" client:visible />
+          <Button
+            type="submit"
+            variant="flat"
+            color="primary"
+            className="w-[550px]"
+            isLoading={isLoading}
+          >
+            Enviar
+          </Button>
+        </Form>
+      </div>
+      <ToastProvider placement="top-right" client:visible />
     </div>
   );
 }
