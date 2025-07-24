@@ -46,9 +46,10 @@ export function Carrousel() {
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               <Card key={index}>
-                <Image
+                <img
                   src={img.src}
                   alt={img.alt}
+                  loading="lazy"
                   className="object-cover w-full h-full rounded-lg"
                 />
               </Card>
