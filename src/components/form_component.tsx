@@ -6,6 +6,7 @@ import {
   SelectItem,
   addToast,
   ToastProvider,
+  HeroUIProvider,
 } from "@heroui/react";
 import type { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
@@ -31,13 +32,19 @@ export function FormComponent() {
     { key: "otros", label: "Otros" },
   ];
 
+  const secretUrl = import.meta.env.PUBLIC_API_URL_LOCAL;
+
+  interface BodyFetch {
+    name_client: string;
+    name_company: string;
+    email_client: string;
+    sector_client: string;
+  }
+
   //* Replacing the data on db and returning true or false
-  const fetchData = async (data: FormWebModel) => {
+  const fetchData = async (data: BodyFetch) => {
     try {
-      const response = await axios.post(
-        `http://localhost:3000/form-data`,
-        data
-      );
+      const response = await axios.post(secretUrl, data);
       if (response.status !== 201 && !response.data) {
         return false;
       }
@@ -102,9 +109,8 @@ export function FormComponent() {
   };
 
   return (
-      <div className="flex flex-col gap-3 p-6 max-w-4xl mx-auto text-center">
-        <ToastProvider placement="top-right" client:visible/>
-        <h1 className="text-blue-900 font-bold text-3xl">
+    <div className="flex flex-col gap-3 p-6 max-w-4xl mx-auto" id="contact">
+        <h1 className="text-blue-900 font-bold text-3xl text-center">
           Solicita tu informe gratuito
         </h1>
         <p>
@@ -186,6 +192,7 @@ export function FormComponent() {
             </Button>
           </Form>
         </div>
-      </div>
+        <ToastProvider placement="top-right" client:visible />
+    </div>
   );
 }
