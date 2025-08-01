@@ -1,0 +1,7 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="transparent"></rect>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Segoe UI, Arial, sans-serif" font-size="100" font-weight="bold">
+    <tspan fill="white">G</tspan>
+    <tspan fill="#F59E0B">N</tspan>
+  </text>
+</svg>
