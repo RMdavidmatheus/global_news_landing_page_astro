@@ -25,9 +25,9 @@ export function Carrousel() {
 
   const images = [
     { src: "/images/cliente_claro.png", alt: "Claro" },
-    { src: "/images/cliente_ubdp.png", alt: "UBDP" },
+    { src: "/images/upbd.jpg", alt: "UBDP" },
     { src: "/images/cliente_presidencia.png", alt: "Presidencia" },
-    { src: "/images/cliente_generico.png", alt: "Otro cliente" },
+    { src: "/images/cliente_generico.jpg", alt: "Nissan" },
   ];
 
   return (

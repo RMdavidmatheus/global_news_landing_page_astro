@@ -11,7 +11,6 @@ import {
 import type { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import type { FormWebModel } from "../models/formModel";
 
 export function FormComponent() {
   const [name, setName] = useState("");
@@ -203,7 +202,7 @@ export function FormComponent() {
           </Button>
         </Form>
       </div>
-      <ToastProvider placement="top-right" client:visible />
+      <ToastProvider placement="top-right"/>
     </div>
   );
 }
