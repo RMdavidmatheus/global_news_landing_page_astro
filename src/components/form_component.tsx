@@ -19,7 +19,7 @@ export function FormComponent() {
   const [sectorValue, setSectorValue] = useState<Set<Key>>(new Set([]));
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   //* Log the error
   useEffect(() => {
     if (error) console.log(error);
@@ -33,7 +33,6 @@ export function FormComponent() {
     { key: "tecnologia", label: "Tecnologia" },
     { key: "otros", label: "Otros" },
   ];
-
 
   const secretUrl = import.meta.env.PUBLIC_API_URL_LOCAL;
 
@@ -126,7 +125,7 @@ export function FormComponent() {
       </p>
       <div className="flex flex-col pt-5">
         <Form
-          className="w-full max-w-xs gap-3"
+          className="w-full max-w-md gap-3 mx-auto"
           onSubmit={handleSubmit}
           validationBehavior="native"
         >
@@ -139,7 +138,7 @@ export function FormComponent() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             color="primary"
-            className="w-[550px]"
+            className="w-full"
             placeholder="Ingresa tu nombre"
             type="text"
           />
@@ -152,7 +151,7 @@ export function FormComponent() {
             value={nameCompany}
             onChange={(e) => setNameCompany(e.target.value)}
             color="primary"
-            className="w-[550px]"
+            className="w-full"
             placeholder="Ingresa el nombre de tu empresa"
             type="text"
           />
@@ -165,7 +164,7 @@ export function FormComponent() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             color="primary"
-            className="w-[550px]"
+            className="w-full"
             placeholder="Ingresa tu correo electrónico"
             type="email"
           />
@@ -174,7 +173,7 @@ export function FormComponent() {
             aria-label="Selecciona tu sector"
             isRequired
             errorMessage="Por favor, selecciona un sector"
-            className="w-[550px]"
+            className="w-full"
             selectedKeys={sectorValue}
             name="sector"
             variant="bordered"
@@ -195,14 +194,14 @@ export function FormComponent() {
             type="submit"
             variant="flat"
             color="primary"
-            className="w-[550px]"
+            className="w-full"
             isLoading={isLoading}
           >
             Enviar
           </Button>
         </Form>
       </div>
-      <ToastProvider placement="top-right"/>
+      <ToastProvider placement="top-right" />
     </div>
   );
 }
