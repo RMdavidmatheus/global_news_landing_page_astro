@@ -133,7 +133,6 @@ export function FormComponent() {
         >
           <Input
             aria-label="Ingresa tu nombre"
-            isClearable
             isRequired
             errorMessage="Por favor, ingresa un nombre"
             name="name"
@@ -147,7 +146,6 @@ export function FormComponent() {
           />
           <Input
             aria-label="Ingresa el nombre de tu empresa"
-            isClearable
             isRequired
             errorMessage="Por favor, ingresa un nombre de empresa"
             name="nameCompany"
@@ -161,7 +159,6 @@ export function FormComponent() {
           />
           <Input
             aria-label="Ingresa tu correo electrónico"
-            isClearable
             isRequired
             errorMessage="Por favor, ingresa un correo electrónico"
             name="email"
