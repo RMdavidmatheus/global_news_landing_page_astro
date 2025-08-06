@@ -6,71 +6,73 @@ import { FormComponent } from "./form_component";
 import { Image } from 'astro:assets';
 ---
 
-  <main class="flex flex-col gap-4 sm:w-[100%] md:w-[100%] lg:w-[100%] xl:w-[100%] 2xl:w-[100%] 3xl:w-[100%]">
-    <div class="flex flex-row justify-center items-center">
-      <Header />
-    </div>
-    {/* About */}
-    <div class="flex flex-col justify-center items-center m-5">
-      <motion.div
-        className="flex flex-row justify-center items-center gap-3"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        client:visible
-      >
-        <div
-          class="w-full h-full flex-col justify-center items-center hidden sm:hidden md:flex lg:flex xl:flex 2xl:flex 3xl:flex"
-        >
-          <Image
-            src="/images/fortalezaas.png"
-            alt="GlobalNews Group"
-            width={800}
-            height={500}
-            class="shadow rounded-lg"
-            loading="eager"
-          />
-        </div>
-        <div class="w-full h-full flex flex-col p-16">
-          <h1 class="text-5xl font-extrabold text-blue-900 mb-4">
-            Soluciones personalizadas para cada sector
-          </h1>
-          <p class="mb-4 text-gray-700 text-lg">
-            Nos especializamos en transformar grandes volúmenes de datos en
-            inteligencia accionable, facilitando decisiones estratégicas en
-            áreas de comunicación, mercado, reputación y más.
-          </p>
-          <ul class="list-disc list-inside space-y-2 text-gray-700 text-lg font-bold">
-            <li>Más de 500 empresas a lo largo de todo el mundo confían en nuestro análisis de datos para mejorar sus estrategias de comunicación.</li>
-            <li>Con presencia en 23 países y en constante expansión, somos la empresa líder en Latinoamérica en servicios de monitoreo de medios masivos tradicionales y redes sociales.</li>
-            <li>GlobalNews Group ha sido reconocida por AMEC, la asociación internacional líder en evaluación de comunicación y medición de medios.</li>
-          </ul>
-        </div>
-      </motion.div>
-    </div>
-
-    {/* Confianza/logos*/}
+<section class="w-full flex flex-col items-center">
+  <div class="w-full">
+    <Header />
+  </div>
+  {/* About */}
+  <div class="w-full flex flex-col items-center px-2 md:px-0 mt-8">
     <motion.div
-      className="w-full h-full flex flex-col justify-center items-center"
+      className="flex flex-col md:flex-row w-full max-w-6xl justify-center items-center gap-8"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       client:visible
     >
+      {/* Imagen solo en md+ */}
+      <div class="hidden md:flex w-1/2 justify-center">
+        <Image
+          src="/images/fortalezaas.png"
+          alt="GlobalNews Group"
+          width={400}
+          height={300}
+          class="shadow rounded-lg w-full h-auto max-w-xs md:max-w-md lg:max-w-lg"
+          loading="eager"
+        />
+      </div>
+      {/* Texto */}
+      <div class="w-full md:w-1/2 flex flex-col px-4 md:px-8">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-900 mb-4">
+          Soluciones personalizadas para cada sector
+        </h1>
+        <p class="mb-4 text-gray-700 text-base md:text-lg">
+          Nos especializamos en transformar grandes volúmenes de datos en inteligencia accionable, facilitando decisiones estratégicas en áreas de comunicación, mercado, reputación y más.
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-gray-700 text-base md:text-lg font-bold">
+          <li>Más de 500 empresas a lo largo de todo el mundo confían en nuestro análisis de datos para mejorar sus estrategias de comunicación.</li>
+          <li>Con presencia en 23 países y en constante expansión, somos la empresa líder en Latinoamérica en servicios de monitoreo de medios masivos tradicionales y redes sociales.</li>
+          <li>GlobalNews Group ha sido reconocida por AMEC, la asociación internacional líder en evaluación de comunicación y medición de medios.</li>
+        </ul>
+      </div>
+    </motion.div>
+  </div>
+
+  {/* Confianza/logos */}
+  <motion.div
+    className="w-full flex flex-col justify-center items-center mt-8"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    client:visible
+  >
+    <div class="w-full max-w-5xl px-2">
       <Carrousel client:visible />
-    </motion.div>
+    </div>
+  </motion.div>
 
-	{/* Formulario*/}
-    <motion.div
-      className="w-full h-full flex flex-col justify-center items-center"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      client:visible
-    >
-      <FormComponent client:visible/>
-    </motion.div>
-  </main>
+  {/* Formulario */}
+  <motion.div
+    className="w-full flex flex-col justify-center items-center mt-8 mb-4"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    client:visible
+  >
+    <div class="w-full max-w-lg px-2">
+      <FormComponent client:visible />
+    </div>
+  </motion.div>
+</section>

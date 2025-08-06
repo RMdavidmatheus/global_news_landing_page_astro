@@ -14,9 +14,12 @@ import Footer from "../components/footer.astro";
 	<body>
 		<slot />
 	</body>
-	<footer class="flex flex-col justify-center items-center bottom-0 bg-gradient-to-r from-[#F3F4F6] to-[#EEEEF2]">
-		<Footer />
-	</footer>
+	<footer class="w-full bg-gradient-to-r from-[#F3F4F6] to-[#F3F4F6] py-4 px-2">
+		<p class="font-normal text-sm sm:text-base text-gray-700 text-center break-words">
+		  &copy; 2025 GlobalNews. Todos los derechos reservados.
+		  <span class="block sm:inline">| Contacto: <a href="mailto:info@globalnews.com" class="underline hover:text-blue-500">info@globalnews.com</a></span>
+		</p>
+	  </footer>
 </html>
 
 <style>
